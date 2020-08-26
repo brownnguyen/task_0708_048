@@ -1,5 +1,5 @@
 @import "./variables.scss";
-
+@import "./mixin.scss";
 .btn-more {
     width: 160px;
     height: 30px;
@@ -28,6 +28,33 @@
         }
     }
 }
+.drawer {
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 1030;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    transition: all 0.5s;
+    .drawer-content {
+        ul {
+            list-style: none;
+            li {
+                a {
+                    color: $green;
+                }
+            }
+        }
+    }
+}
+.drawer.active {
+    height: 100vh;
+}
 .arrow-left {
     margin-left: 10px;
     display: block;
@@ -45,6 +72,34 @@
     border-right: 2px solid $orange;
     border-top: 2px solid $orange;
     transform: rotate(45deg);
+}
+#backTop {
+    z-index: 999;
+    cursor: pointer;
+    position: fixed;
+    padding-top: 5px;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background-color: $green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .backTop {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-left: 2px solid white;
+        border-top: 2px solid white;
+        transform: rotate(45deg);
+        transition: all 2s;
+    }
+    &:hover {
+        .backTop {
+            transform: rotate(1845deg);
+        }
+    }
 }
 .header {
     position: fixed;
@@ -70,25 +125,24 @@
     }
     .menu-list {
         display: flex;
-        display: none;
         justify-content: center;
         ul {
             margin-bottom: 10px;
             list-style: none;
-            transform: translateX(115px);
+            transform: translateX(108px);
             li {
                 display: inline-block;
                 margin: 0 16px;
-                font-size: 1.4rem;
                 a {
                     color: $black;
                     font-weight: bold;
+                    font-size: 1.4rem;
                 }
             }
             .head-entry {
                 width: 140px;
                 background-color: $green;
-                padding: 11px 0;
+                padding: 7.5px 0;
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
@@ -97,6 +151,7 @@
                     color: white;
                     font-weight: 500;
                     font-family: "Source Sans Pro", sans-serif;
+                    font-size: 2rem;
                 }
             }
         }
@@ -269,6 +324,7 @@
                     padding: 0 8px;
                     border-top-right-radius: 8px;
                     font-weight: bold;
+                    font-size: 1.4rem;
                 }
                 span:nth-child(2) {
                     display: block;
@@ -321,6 +377,7 @@
                 text-align: center;
                 color: $white;
                 font-weight: bold;
+                font-size: 2rem;
             }
             .block:nth-child(2n) {
                 margin: 0 20px;
@@ -341,6 +398,7 @@
                     left: 50%;
                     transform: translateX(-50%);
                     color: white;
+                    font-size: 2rem;
                 }
                 .top {
                     position: absolute;
@@ -405,19 +463,52 @@
             }
             span {
                 color: $white;
+                font-size: 1.2rem;
             }
+        }
+    }
+}
+@include CSSIE {
+    .arrow-left{
+        margin-left: -10px;
+    }
+    .arrow-right{
+        margin-right: 25px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .m-20 {
+        padding: 0 20px;
+    }
+    .header {
+        .menu-list {
+            ul {
+                transform: translate(0);
+            }
+        }
+    }
+    .staff {
+        .staff-content {
+            width: 79%;
         }
     }
 }
 @media screen and (max-width: 768px) {
     .header {
-        padding: 0 30px;
+        padding: 0 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .menu-list {
+            ul {
+                display: none;
+                visibility: hidden;
+            }
+        }
         .menu-burger {
             .menu {
                 position: relative;
+                z-index: 9999;
                 width: 40px;
                 height: 40px;
                 span {
@@ -428,6 +519,7 @@
                     width: 40px;
                     height: 2px;
                     background-color: $green;
+                    transition: all 0.5s;
                 }
                 span:first-of-type {
                     transform: translateY(-19px);
@@ -507,8 +599,8 @@
 @media screen and (max-width: 576px) {
     .top-slide {
         margin-top: 65px;
-        .content{
-            .title{
+        .content {
+            .title {
                 left: 20px;
                 top: 72%;
             }
@@ -526,31 +618,38 @@
             .slick-next {
                 right: -40px;
             }
+            .content{
+                h3{
+                    top: 36%;
+                    left: 17%;
+                    font-size: 1.6rem;
+                }
+            }
         }
     }
     .block-lr .content .block-right .text {
         left: 20px;
         top: 20px;
     }
-    .block-lr .content .block-left .text{
+    .block-lr .content .block-left .text {
         left: 20px;
         top: 20px;
     }
-    .office-tour{
-        .office-tour-content{
-            .text{
-                h2.title{
-                    br{
+    .office-tour {
+        .office-tour-content {
+            .text {
+                h2.title {
+                    br {
                         display: none;
                     }
                 }
-                .btn-more{
+                .btn-more {
                     margin-top: 10px;
                 }
             }
         }
     }
-    .footer .footer-bot .content{
+    .footer .footer-bot .content {
         flex-wrap: wrap;
     }
 }
