@@ -122,11 +122,12 @@
       .header .menu-list ul .head-entry {
         width: 140px;
         background-color: #449999;
-        padding: 7.5px 0;
+        height: 40px;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        border-radius: 30px; }
+        border-radius: 30px;
+        line-height: 28px; }
         .header .menu-list ul .head-entry a {
           color: white;
           font-weight: 500;
